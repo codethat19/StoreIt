@@ -176,15 +176,7 @@ export const getFileIcon = (
 // APPWRITE URL UTILS
 // Construct appwrite file URL - https://appwrite.io/docs/apis/rest#images
 export const constructFileUrl = (bucketFileId: string) => {
-	console.log('Environment variables:', {
-		endpoint: process.env.NEXT_PUBLIC_APPWRITE_ENDPOINT,
-		bucket: process.env.NEXT_PUBLIC_APPWRITE_BUCKET,
-		projectId: process.env.NEXT_PUBLIC_APPWRITE_PROJECT_ID
-	});
-	
-	const url = `${process.env.NEXT_PUBLIC_APPWRITE_ENDPOINT}/storage/buckets/${process.env.NEXT_PUBLIC_APPWRITE_BUCKET}/files/${bucketFileId}/view?project=${process.env.NEXT_PUBLIC_APPWRITE_PROJECT_ID}`;
-	console.log('Generated URL:', url);
-	return url;
+	return `${process.env.NEXT_PUBLIC_APPWRITE_ENDPOINT}/storage/buckets/${process.env.NEXT_PUBLIC_APPWRITE_BUCKET}/files/${bucketFileId}/view?project=${process.env.NEXT_PUBLIC_APPWRITE_PROJECT_ID}`;
 };
 
 export const constructDownloadUrl = (bucketFileId: string) => {
