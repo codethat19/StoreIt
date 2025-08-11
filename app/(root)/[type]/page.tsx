@@ -3,7 +3,7 @@ import { getFileTypesParams } from "@/lib/utils";
 import React from "react";
 import { getFiles } from "@/lib/actions/file.actions";
 import { Models } from "node-appwrite";
-// import Sort from "@/components/Sort";
+import Sort from "@/components/Sort";
 import Card from "@/components/Card";
 
 const page = async ({ searchParams, params }: SearchParamProps) => {
@@ -30,7 +30,7 @@ const page = async ({ searchParams, params }: SearchParamProps) => {
 							Sort by:
 						</p>
 
-						{/* <Sort /> */}
+						<Sort />
 					</div>
 				</div>
 			</section>
