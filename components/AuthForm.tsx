@@ -55,18 +55,37 @@ const AuthForm = ({ type }: { type: FormType }) => {
 		setErrorMessage("");
 
 		try {
-			const user =
+			if (type === "sign-up") {
+				const user = await createAccount({
+					fullName: values.fullName || "",
+					email: values.email,
+				});
+				setAccountId(user.accountId);
+			} else {
+				// Handle sign-in
+				const result = await signInUser({
+					email: values.email,
+				});
+
+				if (result.error === "User not found") {
+					setErrorMessage(
+						"Account not found. Please sign up first to create an account."
+					);
+					return;
+				}
+
+				if (result.accountId) {
+					setAccountId(result.accountId);
+				} else {
+					setErrorMessage("Failed to sign in. Please try again.");
+				}
+			}
+		} catch (error) {
+			setErrorMessage(
 				type === "sign-up"
-					? await createAccount({
-							fullName: values.fullName || "",
-							email: values.email,
-						})
-					: await signInUser({
-							email: values.email,
-						});
-			setAccountId(user.accountId);
-		} catch {
-			setErrorMessage("Failed to create account. Please try again");
+					? "Failed to create account. Please try again"
+					: "Failed to sign in. Please try again"
+			);
 		} finally {
 			setIsLoading(false);
 		}

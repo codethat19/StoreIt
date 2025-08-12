@@ -308,6 +308,12 @@
 	.error-message {
 		@apply body-2 mx-auto w-fit rounded-xl bg-error/5 px-8 py-4 text-center text-error !important;
 	}
+	.error-message p {
+		@apply m-0 !important;
+	}
+	.error-message p:first-child {
+		@apply mb-2 !important;
+	}
 
 	/* Card */
 	.file-card {
